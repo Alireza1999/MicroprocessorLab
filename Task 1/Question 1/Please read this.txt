@@ -1,0 +1,9 @@
+Calculation:
+we wanna use timer and crystal so:
+crystal clock =12 MHz
+using of timer0 prescaler = 12Mhz/1024 = 11718.75 hz
+period of new clock = 1/11718.75 = 85.33 micro sec
+85.33 * 234 = 19967.22 micro sec
+25* 19967.22 = 499180.5 micro sec = 499 milisec 
+so we fill TCNT0 with 256-234 = 22
+and we must XOR PORTA.0 after 25 overflow of timer 
