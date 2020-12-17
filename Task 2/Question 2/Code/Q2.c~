@@ -1,0 +1,34 @@
+
+
+#include <mega16.h>
+
+
+void main(void)
+{
+
+
+
+DDRD=0b11111111;
+PORTD=0b00000000;
+DDRC=0b11111111;
+PORTC=0b00000000;
+
+
+
+
+
+// Timer(s)/Counter(s) Interrupt(s) initialization
+TIMSK=(0<<OCIE2) | (0<<TOIE2) | (0<<TICIE1) | (0<<OCIE1A) | (0<<OCIE1B) | (1<<TOIE1) | (0<<OCIE0) | (1<<TOIE0);
+
+// External Interrupt(s) initialization
+// INT0: Off
+// INT1: Off
+// INT2: Off
+MCUCR=(0<<ISC11) | (0<<ISC10) | (0<<ISC01) | (0<<ISC00);
+MCUCSR=(0<<ISC2);
+
+while (1)
+      {
+
+      }
+}
