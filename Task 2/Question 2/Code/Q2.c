@@ -2,7 +2,7 @@
 #include <mega16.h>
 #include <delay.h>
 
-int kossher;
+int temp;
 int SevenSegNumber[10] = {0b00111111 , 0b00000110 , 0b01011011 , 0b01001111 , 0b01100110 , 0b01101101 , 0b01111101 , 0b00000111 ,0b01111111 ,0b01101111};
 
 int Timer0OverFlowCounter =0;
@@ -18,16 +18,16 @@ interrupt [TIM0_OVF] void timer0_ovf_isr(void)
 
    ++Timer0OverFlowCounter;
     if(Timer0OverFlowCounter ==2){
-           kossher = PORTC ^ 0b11111111;
-           PORTC= kossher ^ 0b11111111;
+           temp = PORTC ^ 0b11111111;
+           PORTC= temp ^ 0b11111111;
            PORTD = SevenSegNumber[SevenSegCounter[lastSevenSeg]];
-           kossher = kossher >>1;
-           if(kossher ==0){
-           kossher = 8;
+           temp = temp >>1;
+           if(temp ==0){
+           temp = 8;
            }
-           kossher = kossher ^ 0b11111111;
-           PORTC = kossher;
-           kossher = kossher ^ 0b11111111;
+           temp = temp ^ 0b11111111;
+           PORTC = temp;
+           temp = temp ^ 0b11111111;
 
               Timer0OverFlowCounter=0;
              lastSevenSeg--;
