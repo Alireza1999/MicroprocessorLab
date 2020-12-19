@@ -11,7 +11,7 @@ Variable                                                                        
 Register Allocation
 Variable                                                                          Register  Size
 ------------------------------------------------------------------------------------------------
-kossher                                                                           R4,R5        2
+temp                                                                              R4,R5        2
 Timer0OverFlowCounter                                                             R6,R7        2
 Timer1OverFlowCounter                                                             R8,R9        2
 i                                                                                 R10,R11      2

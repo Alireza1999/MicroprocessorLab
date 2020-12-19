@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.30  C:\Users\Salir\Desktop\MicroprocessorLab\Task 2\Question 2\Code\Debug\List\Q2.asm Sat Dec 19 19:26:23 2020
+AVRASM ver. 2.1.30  C:\Users\Salir\Desktop\MicroprocessorLab\Task 2\Question 2\Code\Debug\List\Q2.asm Sat Dec 19 19:33:21 2020
 
 C:\Users\Salir\Desktop\MicroprocessorLab\Task 2\Question 2\Code\Debug\List\Q2.asm(1088): warning: Register r4 already defined by the .DEF directive
 C:\Users\Salir\Desktop\MicroprocessorLab\Task 2\Question 2\Code\Debug\List\Q2.asm(1089): warning: Register r5 already defined by the .DEF directive
@@ -1099,8 +1099,8 @@ C:\Users\Salir\Desktop\MicroprocessorLab\Task 2\Question 2\Code\Debug\List\Q2.as
                  	.ENDM
                  
                  ;NAME DEFINITIONS FOR GLOBAL VARIABLES ALLOCATED TO REGISTERS
-                 	.DEF _kossher=R4
-                 	.DEF _kossher_msb=R5
+                 	.DEF _temp=R4
+                 	.DEF _temp_msb=R5
                  	.DEF _Timer0OverFlowCounter=R6
                  	.DEF _Timer0OverFlowCounter_msb=R7
                  	.DEF _Timer1OverFlowCounter=R8
@@ -1260,7 +1260,7 @@ C:\Users\Salir\Desktop\MicroprocessorLab\Task 2\Question 2\Code\Debug\List\Q2.as
                  	#endif
                  ;#include <delay.h>
                  ;
-                 ;int kossher;
+                 ;int temp;
                  ;int SevenSegNumber[10] = {0b00111111 , 0b00000110 , 0b01011011 , 0b01001111 , 0b01100110 , 0b01101101 , 0b01111101 , 0b0 ...
                  
                  	.DSEG
@@ -1291,13 +1291,13 @@ C:\Users\Salir\Desktop\MicroprocessorLab\Task 2\Question 2\Code\Debug\List\Q2.as
 000072 15e6      	CP   R30,R6
 000073 05f7      	CPC  R31,R7
 000074 f541      	BRNE _0x4
-                 ; 0000 0015            kossher = PORTC ^ 0b11111111;
+                 ; 0000 0015            temp = PORTC ^ 0b11111111;
 000075 b3e5      	IN   R30,0x15
 000076 efaf      	LDI  R26,LOW(255)
 000077 27ea      	EOR  R30,R26
 000078 2e4e      	MOV  R4,R30
 000079 2455      	CLR  R5
-                 ; 0000 0016            PORTC= kossher ^ 0b11111111;
+                 ; 0000 0016            PORTC= temp ^ 0b11111111;
 00007a efef      	LDI  R30,LOW(255)
 00007b 25e4      	EOR  R30,R4
 00007c bbe5      	OUT  0x15,R30
@@ -1309,25 +1309,25 @@ C:\Users\Salir\Desktop\MicroprocessorLab\Task 2\Question 2\Code\Debug\List\Q2.as
 000081 d08b      	RCALL SUBOPT_0x2
 000082 91ec      	LD   R30,X
 000083 bbe2      	OUT  0x12,R30
-                 ; 0000 0018            kossher = kossher >>1;
+                 ; 0000 0018            temp = temp >>1;
 000084 9455      	ASR  R5
 000085 9447      	ROR  R4
-                 ; 0000 0019            if(kossher ==0){
+                 ; 0000 0019            if(temp ==0){
 000086 2c04      	MOV  R0,R4
 000087 2805      	OR   R0,R5
 000088 f419      	BRNE _0x5
-                 ; 0000 001A            kossher = 8;
+                 ; 0000 001A            temp = 8;
 000089 e0e8      	LDI  R30,LOW(8)
 00008a e0f0      	LDI  R31,HIGH(8)
 00008b 012f      	MOVW R4,R30
                  ; 0000 001B            }
-                 ; 0000 001C            kossher = kossher ^ 0b11111111;
+                 ; 0000 001C            temp = temp ^ 0b11111111;
                  _0x5:
 00008c efef      	LDI  R30,LOW(255)
 00008d 264e      	EOR  R4,R30
-                 ; 0000 001D            PORTC = kossher;
+                 ; 0000 001D            PORTC = temp;
 00008e ba45      	OUT  0x15,R4
-                 ; 0000 001E            kossher = kossher ^ 0b11111111;
+                 ; 0000 001E            temp = temp ^ 0b11111111;
 00008f 264e      	EOR  R4,R30
                  ; 0000 001F 
                  ; 0000 0020               Timer0OverFlowCounter=0;

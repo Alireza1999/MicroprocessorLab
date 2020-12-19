@@ -26,7 +26,7 @@
 ;PCODE: $0000000C VOL: 0
 ;#include <delay.h>
 ;
-;int kossher;
+;int temp;
 ;int SevenSegNumber[10] = {0b00111111 , 0b00000110 , 0b01011011 , 0b01001111 , 0b01100110 , 0b01101101 , 0b01111101 , 0b0 ...
 
 	.DSEG
@@ -54,13 +54,13 @@
 ;PCODE: $00000012 VOL: 0
 ;PCODE: $00000013 VOL: 0
 ;PCODE: $00000014 VOL: 0
-; 0000 0015            kossher = PORTC ^ 0b11111111;
+; 0000 0015            temp = PORTC ^ 0b11111111;
 ;PCODE: $00000015 VOL: 0
 ;PCODE: $00000016 VOL: 0
 ;PCODE: $00000017 VOL: 0
 ;PCODE: $00000018 VOL: 0
 ;PCODE: $00000019 VOL: 0
-; 0000 0016            PORTC= kossher ^ 0b11111111;
+; 0000 0016            PORTC= temp ^ 0b11111111;
 ;PCODE: $0000001A VOL: 0
 ;PCODE: $0000001B VOL: 0
 ;PCODE: $0000001C VOL: 0
@@ -75,24 +75,24 @@
 ;PCODE: $00000024 VOL: 0
 ;PCODE: $00000025 VOL: 0
 ;PCODE: $00000026 VOL: 0
-; 0000 0018            kossher = kossher >>1;
+; 0000 0018            temp = temp >>1;
 ;PCODE: $00000027 VOL: 0
-; 0000 0019            if(kossher ==0){
+; 0000 0019            if(temp ==0){
 ;PCODE: $00000028 VOL: 0
 ;PCODE: $00000029 VOL: 0
-; 0000 001A            kossher = 8;
+; 0000 001A            temp = 8;
 ;PCODE: $0000002A VOL: 0
 ;PCODE: $0000002B VOL: 0
 ; 0000 001B            }
-; 0000 001C            kossher = kossher ^ 0b11111111;
+; 0000 001C            temp = temp ^ 0b11111111;
 ;PCODE: $0000002C VOL: 0
 ;PCODE: $0000002D VOL: 0
 ;PCODE: $0000002E VOL: 0
 ;PCODE: $0000002F VOL: 0
-; 0000 001D            PORTC = kossher;
+; 0000 001D            PORTC = temp;
 ;PCODE: $00000030 VOL: 0
 ;PCODE: $00000031 VOL: 0
-; 0000 001E            kossher = kossher ^ 0b11111111;
+; 0000 001E            temp = temp ^ 0b11111111;
 ;PCODE: $00000032 VOL: 0
 ;PCODE: $00000033 VOL: 0
 ;PCODE: $00000034 VOL: 0

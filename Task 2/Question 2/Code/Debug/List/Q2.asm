@@ -1085,8 +1085,8 @@ __DELAY_USW_LOOP:
 	.ENDM
 
 ;NAME DEFINITIONS FOR GLOBAL VARIABLES ALLOCATED TO REGISTERS
-	.DEF _kossher=R4
-	.DEF _kossher_msb=R5
+	.DEF _temp=R4
+	.DEF _temp_msb=R5
 	.DEF _Timer0OverFlowCounter=R6
 	.DEF _Timer0OverFlowCounter_msb=R7
 	.DEF _Timer1OverFlowCounter=R8
@@ -1236,7 +1236,7 @@ __GLOBAL_INI_END:
 	#endif
 ;#include <delay.h>
 ;
-;int kossher;
+;int temp;
 ;int SevenSegNumber[10] = {0b00111111 , 0b00000110 , 0b01011011 , 0b01001111 , 0b01100110 , 0b01101101 , 0b01111101 , 0b0 ...
 
 	.DSEG
@@ -1267,13 +1267,13 @@ _timer0_ovf_isr:
 	CP   R30,R6
 	CPC  R31,R7
 	BRNE _0x4
-; 0000 0015            kossher = PORTC ^ 0b11111111;
+; 0000 0015            temp = PORTC ^ 0b11111111;
 	IN   R30,0x15
 	LDI  R26,LOW(255)
 	EOR  R30,R26
 	MOV  R4,R30
 	CLR  R5
-; 0000 0016            PORTC= kossher ^ 0b11111111;
+; 0000 0016            PORTC= temp ^ 0b11111111;
 	LDI  R30,LOW(255)
 	EOR  R30,R4
 	OUT  0x15,R30
@@ -1285,25 +1285,25 @@ _timer0_ovf_isr:
 	RCALL SUBOPT_0x2
 	LD   R30,X
 	OUT  0x12,R30
-; 0000 0018            kossher = kossher >>1;
+; 0000 0018            temp = temp >>1;
 	ASR  R5
 	ROR  R4
-; 0000 0019            if(kossher ==0){
+; 0000 0019            if(temp ==0){
 	MOV  R0,R4
 	OR   R0,R5
 	BRNE _0x5
-; 0000 001A            kossher = 8;
+; 0000 001A            temp = 8;
 	LDI  R30,LOW(8)
 	LDI  R31,HIGH(8)
 	MOVW R4,R30
 ; 0000 001B            }
-; 0000 001C            kossher = kossher ^ 0b11111111;
+; 0000 001C            temp = temp ^ 0b11111111;
 _0x5:
 	LDI  R30,LOW(255)
 	EOR  R4,R30
-; 0000 001D            PORTC = kossher;
+; 0000 001D            PORTC = temp;
 	OUT  0x15,R4
-; 0000 001E            kossher = kossher ^ 0b11111111;
+; 0000 001E            temp = temp ^ 0b11111111;
 	EOR  R4,R30
 ; 0000 001F 
 ; 0000 0020               Timer0OverFlowCounter=0;
