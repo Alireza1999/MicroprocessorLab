@@ -17,11 +17,11 @@ _lcd_maxx                                                                       
 FLASH Allocation [words]
 Function                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
-main                                                                              0x00062     36
-_lcd_write_nibble_G100                                                            0x00086     20
-_lcd_write_data                                                                   0x0009A     12
-lcd_gotoxy                                                                        0x000A6     13
-lcd_clear                                                                         0x000B3     10
-lcd_putchar                                                                       0x000BD     21
-lcd_putsf                                                                         0x000D2     19
-lcd_init                                                                          0x000E5     43
+main                                                                              0x00062     14
+_lcd_write_nibble_G100                                                            0x00070     20
+_lcd_write_data                                                                   0x00084     12
+lcd_gotoxy                                                                        0x00090     13
+lcd_clear                                                                         0x0009D     10
+lcd_putchar                                                                       0x000A7     21
+lcd_putsf                                                                         0x000BC     19
+lcd_init                                                                          0x000CF     43

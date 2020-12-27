@@ -1,4 +1,4 @@
-VERSION:3 SOURCE_TIMESTAMP:519905F6
-NODE:I LEVEL:0 LINE:24 "C:\cvavr\inc\mega16.h"
-NODE:I LEVEL:0 LINE:27 "C:\cvavr\inc\alcd.h"
-NODE:F LEVEL:0 LINE:31 "main(void)"
+VERSION:3 SOURCE_TIMESTAMP:51995F14
+NODE:I LEVEL:0 LINE:1 "C:\cvavr\inc\mega16.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr\inc\alcd.h"
+NODE:F LEVEL:0 LINE:4 "main(void)"
