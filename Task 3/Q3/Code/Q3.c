@@ -5,9 +5,9 @@
 
 #define ICR1 256 * ICR1H + ICR1L;
 
-unsigned int riseStartEdge;
-unsigned int fallStartEdge;
-unsigned int riseEndEdge;
+unsigned int start;
+unsigned int start2;
+unsigned int end;
 
 char frequency[16];
 
@@ -28,24 +28,24 @@ void main(void)
 
         TCCR1B = 0x41;
         while ((TIFR&(1<<ICF1)) == 0);
-        riseStartEdge = ICR1;
+        start = ICR1;
         TIFR = (1<<ICF1);
 
         TCCR1B = 0x01;
         while ((TIFR&(1<<ICF1)) == 0);
-        fallStartEdge = ICR1;
+        start2 = ICR1;
         TIFR = (1<<ICF1);
 
         TCCR1B = 0x41;
         while ((TIFR&(1<<ICF1)) == 0);
-        riseEndEdge = ICR1;
+        end = ICR1;
         TIFR = (1<<ICF1);
 
         TCCR1B = 0;
 
-		if(riseStartEdge < riseEndEdge)
+		if(start < end)
 		{
-			period = riseEndEdge - riseStartEdge;
+			period = end - start;
 
 			freq= 8000000UL/period;
             sprintf(frequency,"Freq: %d Hz", (int)freq);
